@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { getProducts } from '../components/products'
+import { getProducts } from '../lib/products'
 import Title from '../components/Title'
 
 export async function getStaticProps() {
@@ -8,7 +8,7 @@ export async function getStaticProps() {
   const products = await getProducts()
   return {
     props: { products },
-    revalidate: 30,
+    revalidate: parseInt(process.env.REVALiDATE_SECONDES),
   }
 }
 export default function HomePage({ products }) {
