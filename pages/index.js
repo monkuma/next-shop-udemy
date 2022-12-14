@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { getProducts } from '../lib/products'
 import Title from '../components/Title'
+import ProductCard from '../components/ProductCard'
 
 export async function getStaticProps() {
   console.log('HomePage getStaticProps : ')
@@ -21,10 +22,10 @@ export default function HomePage({ products }) {
       </Head>
       <main className="px-6 py-4">
         <Title>Next.js SHOP</Title>
-        <ul>
+        <ul className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {products.map((product) => (
             <li key={product.id}>
-              <Link href={`/products/${product.id}`}>{product.title}</Link>
+              <ProductCard product={product} />
             </li>
           ))}
         </ul>
